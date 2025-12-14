@@ -1,5 +1,5 @@
 -- Configuration (MUST MATCH the Python C&C Server from Step 1)
-local C_AND_C_IP = "192.168.0.81" -- !!! Use the SAME IP address as in bot_scanner.lua !!!
+local C_AND_C_IP = "127.0.0.1" -- !!! Use the SAME IP address as in bot_scanner.lua !!!
 local C_AND_C_PORT = 8080
 local GET_TARGET_ENDPOINT = "http://" .. C_AND_C_IP .. ":" .. C_AND_C_PORT .. "/get_target"
 
@@ -99,3 +99,4 @@ end
 -- AutoJoinerButton.MouseButton1Click:Connect(function() ToggleAutoJoiner(true) end)
 
 -- StopButton.MouseButton1Click:Connect(function() ToggleAutoJoiner(false) end)
+
