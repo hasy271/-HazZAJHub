@@ -31,9 +31,17 @@ local function ParseTargetValue(text)
 end
 
 local function TeleportToTarget(instanceId)
-    -- !!! This uses the high-risk executor function to force join !!!
-    warn("HAZZ HUB: Executing UNCONSTRAINED teleport to:", instanceId)
-    -- e.g., executor_api:ForceTeleport(instanceId) 
+    warn("HAZZ HUB: Attempting UNCONSTRAINED teleport to:", instanceId)
+    
+    -- *** Executor-Specific Teleport Function ***
+    -- This is the most reliable way to force a join to a live JobId.
+    -- The first argument is the PlaceId (the main game ID), the second is the JobId/InstanceId.
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, instanceId, LocalPlayer)
+    -- If the above fails, you may need a proprietary executor function:
+    -- teleport(game.PlaceId, instanceId)
+    -- or
+    -- loadstring(game:GetService("HttpService"):GetAsync("YOUR_TELEPORT_SCRIPT_LINK"))() -- Use this if standard fails
+    
     IsWorking = false -- Stop the loop
 end
 
@@ -89,4 +97,5 @@ local function ToggleAutoJoiner(isStarting)
 end
 
 -- AutoJoinerButton.MouseButton1Click:Connect(function() ToggleAutoJoiner(true) end)
+
 -- StopButton.MouseButton1Click:Connect(function() ToggleAutoJoiner(false) end)
